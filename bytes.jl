@@ -19,7 +19,7 @@ function strToUInt128s!(s::String)
 
         if count == 16
             push!(big_bytes, temp)
-            temp = 0
+            temp = UInt128(0)
             count= 0
         end
     end
@@ -49,6 +49,10 @@ function UInt128sToStr(Us::Array{UInt128})
     return str
 end
 
+function UInt128Manipulate(big_bytes::Array{UInt128})
 
-@show x = strToUInt128s!("hello im here this is a sentence")
+end
+
+s = "hello im here this is a sentence this is an even longer sentence"
+@show x = strToUInt128s!(s)
 @show UInt128sToStr(x)
