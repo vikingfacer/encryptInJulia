@@ -49,10 +49,23 @@ function UInt128sToStr(Us::Array{UInt128})
     return str
 end
 
-function UInt128Manipulate(big_bytes::Array{UInt128})
+function Pad_Encryption(US::Array{UInt128}, key = nothing)
+    #  if key does not exist then create one
+    if key == nothing
+        key = rand(UInt128, length(US))
+    end
 
+    return (US .+ key, key)
 end
+
+function Pad_Decryption(US::Array{UInt128}, key)
+    return US .- key
+end
+
+
 
 s = "hello im here this is a sentence this is an even longer sentence"
 @show x = strToUInt128s!(s)
 @show UInt128sToStr(x)
+@show e = Pad_Encryption(x)
+@show UInt128sToStr(Pad_Decryption(e[1],e[2]))
